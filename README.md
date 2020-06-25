@@ -31,7 +31,7 @@ The final dependency is the most difficult:  while many conda channels contain P
 A fresh Python virtual environment can be created using Intel Python or Anaconda:
 
 ```
-$ conda create --prefix="${HOME}/pystan-env" python'>=3.8' pip numpy cython'>=0.22'
+$ conda create --prefix="${HOME}/pystan-env" python'>=3.7' pip numpy cython'>=0.22'
    :
 $ source activate "${HOME}/pystan-env"
 ```

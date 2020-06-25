@@ -22,7 +22,8 @@ RUN conda install numpy cython>=0.22
 # Copy CKBIT source  into the container:
 #
 RUN mkdir /tmp/ckbit
-COPY ckbit pystan-install.sh pystan-test.py setup.py /tmp/ckbit
+COPY pystan-install.sh pystan-test.py setup.py /tmp/ckbit/
+COPY ckbit /tmp/ckbit/ckbit
 WORKDIR /tmp/ckbit
 
 #
@@ -39,5 +40,5 @@ RUN python setup.py install
 #
 # Remove the CKBIT source:
 #
-WORKDIR /
-RUN rm -rf /tmp/ckbit
+#WORKDIR /
+#RUN rm -rf /tmp/ckbit

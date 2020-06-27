@@ -96,7 +96,7 @@ def rxn_ord_exp_data(filename):
 #Code to run reaction order MCMC estimate
 def MCMC(filename, model_name='rxn_ord', priors=None,\
          warmup=None, iters=5000, chains=2, n_jobs=1, \
-         verbose=True, seed=np.random.randint(0, 1E9), \
+         verbose=True, seed=None, \
          trace=True, init_random=False,\
          control={'adapt_delta':0.9999, 'max_treedepth':100}, int_init=10, \
          rxn_ord_init=0, sigma_init=1):
@@ -178,6 +178,7 @@ def MCMC(filename, model_name='rxn_ord', priors=None,\
         init_list.append(dict_init)
     if init_random: init_list='random'
     #Run sampler
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.sampling(data=rxn_ord_data, warmup=warmup, iter=iters, \
                       chains=chains, n_jobs=n_jobs, verbose=verbose, \
                       control=control, pars=['intercept','rxn_ord','sigma'], \
@@ -193,7 +194,7 @@ def MCMC(filename, model_name='rxn_ord', priors=None,\
 #Code to run reaction order VI estimate
 def VI(filename, model_name='rxn_ord', priors=None,\
          iters=2000000, algorithm='fullrank', \
-         verbose=True, seed=np.random.randint(0, 1E9), \
+         verbose=True, seed=None, \
          sample_file='./samples.csv', diagnostic_file='./diagnostics.csv',\
          grad_samples=1, elbo_samples=100, tol_rel_obj=0.01, adapt_iter=50, \
          eval_elbo=100, output_samples=10000, eta=0.2, \
@@ -272,6 +273,7 @@ def VI(filename, model_name='rxn_ord', priors=None,\
     #Compile stan model or open old one
     sm = StanModel_cache(model_code=rxn_ord_code, model_name=model_name)
     #Run VI estimation
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.vb(data=rxn_ord_data, algorithm=algorithm, iter=iters, \
                 verbose=verbose, seed=seed,\
                 sample_file=sample_file, diagnostic_file=diagnostic_file, \
@@ -310,7 +312,8 @@ def VI(filename, model_name='rxn_ord', priors=None,\
           ' The data points should approach and stabilize at a maximum'\
           'value, and there should be at least 10,000 iterations. If not ' \
           'converged, run again with a doubled eta value. Default eta value ' \
-          'is 0.2 . It is recommended to run this twice and ensure the ' \
+          'is 0.2 . It is recommended to run this twice with different ' \
+          'random seed initializations and ensure the ' \
           'results are consistent.'.format(elbo_val))
     data = pd.read_csv(diagnostic_file ,skiprows=range(0,21), \
                        names=['iters','times','elbo'])
@@ -332,7 +335,7 @@ def VI(filename, model_name='rxn_ord', priors=None,\
 #Code to run reaction order MAP estimate
 def MAP(filename, model_name='rxn_ord', priors=None,\
          verbose=True, init_random=False,\
-         seed=np.random.randint(0, 1E9),\
+         seed=None,\
          int_init=10, rxn_ord_init=0, sigma_init=1):
     '''MAP estimation for reaction order estimation
     
@@ -383,6 +386,7 @@ def MAP(filename, model_name='rxn_ord', priors=None,\
                   'sigma':sigma_init}]
     if init_random: init_list='random'
     #Run point estimation
+    if seed==None: seed=np.random.randint(0, 1E9)
     point_estimates = sm.optimizing(data=rxn_ord_data, verbose=verbose, \
                                     init=init_list, seed=seed)
     #Generate and print results

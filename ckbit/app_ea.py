@@ -107,7 +107,7 @@ def app_ea_exp_data(filename, R_units = 'kJ/mol/K'):
 def MCMC(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
          Ea_up_lim=350, warmup=None, iters=5000, chains=2, n_jobs=1, \
          verbose=True, trace=True, init_random=False,\
-         seed=np.random.randint(0, 1E9),\
+         seed=None,\
          control={'adapt_delta':0.9999, 'max_treedepth':100}, int_init=10, \
          Ea_init=80, sigma_init=1):
     '''Bayesian inference using MCMC sampling for apparent Ea estimation
@@ -193,6 +193,7 @@ def MCMC(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
         init_list.append(dict_init)
     if init_random: init_list='random'
     #Run sampler
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.sampling(data=app_ea_data, warmup=warmup, iter=iters, \
                       chains=chains, n_jobs=n_jobs, verbose=verbose, \
                       control=control, pars=['intercept','app_ea','sigma'], \
@@ -208,7 +209,7 @@ def MCMC(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
 #Code to run apparent activation energy VI estimate
 def VI(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
          Ea_up_lim=350, iters=2000000, algorithm='fullrank', \
-         verbose=True, seed=np.random.randint(0, 1E9),\
+         verbose=True, seed=None,\
          sample_file='./samples.csv', diagnostic_file='./diagnostics.csv',\
          grad_samples=1, elbo_samples=100, tol_rel_obj=0.01, adapt_iter=50, \
          eval_elbo=100, output_samples=10000, eta=0.2, \
@@ -293,6 +294,7 @@ def VI(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
     #Compile stan model or open old one
     sm = StanModel_cache(model_code=app_ea_code, model_name=model_name)
     #Run VI estimation
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.vb(data=app_ea_data, algorithm=algorithm, iter=iters, \
                 verbose=verbose, seed=seed,\
                 sample_file=sample_file, diagnostic_file=diagnostic_file, \
@@ -328,10 +330,11 @@ def VI(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
           'is reached! The algorithm may not have converged. Consider ' \
           'increasing the iters parameter by a factor of 10.')
     print('Check Convergence of ELBO plot to ensure ELBO converged corretly.' \
-          ' The data points should approach  and stabilize at a maximum '\
+          ' The data points should approach and stabilize at a maximum'\
           'value, and there should be at least 10,000 iterations. If not ' \
           'converged, run again with a doubled eta value. Default eta value ' \
-          'is 0.2 . It is recommended to run this twice and ensure the ' \
+          'is 0.2 . It is recommended to run this twice with different ' \
+          'random seed initializations and ensure the ' \
           'results are consistent.'.format(elbo_val))
     data = pd.read_csv(diagnostic_file ,skiprows=range(0,21), \
                        names=['iters','times','elbo'])
@@ -353,7 +356,7 @@ def VI(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
 #Code to run apparent activation energy MAP estimate
 def MAP(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
          Ea_up_lim=350, verbose=True, init_random=False,\
-         seed=np.random.randint(0, 1E9),\
+         seed=None,\
          int_init=10, Ea_init=80, sigma_init=1):
     '''MAP estimation for apparent Ea estimation
     
@@ -408,6 +411,7 @@ def MAP(filename, model_name='app_ea', R_units='kJ/mol/K', priors=None,\
     init_list = [{'intercept':int_init, 'app_ea':Ea_init, 'sigma':sigma_init}]
     if init_random: init_list='random'
     #Run point estimation
+    if seed==None: seed=np.random.randint(0, 1E9)
     point_estimates = sm.optimizing(data=app_ea_data, verbose=verbose, \
                                     init=init_list, seed=seed)
     #Generate and print results

@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rxn_ord &mdash; CKBIT  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pfr" href="pfr.html" />
+    <link rel="prev" title="app_ea" href="app_ea.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CKBIT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_ea.html">app_ea</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">rxn_ord</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pfr.html">pfr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cstr.html">cstr</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CKBIT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rxn_ord</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rxn_ord.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rxn-ord">
+<span id="id1"></span><h1>rxn_ord<a class="headerlink" href="#rxn-ord" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-ckbit.rxn_ord"></span><p>ckbit.rxn_ord</p>
+<dl class="function">
+<dt id="ckbit.rxn_ord.MAP">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">MAP</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">model_name='rxn_ord'</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">init_random=False</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">int_init=10</em>, <em class="sig-param">rxn_ord_init=0</em>, <em class="sig-param">sigma_init=1</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.MAP" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAP estimation for reaction order estimation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of Excel input file that contains the appropriately
+formated reaction order data (see examples)</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of model, used for saving/loading compilied Stan code, Default
+is ‘rxn_ord’</p></li>
+<li><p><strong>priors</strong> (<em>list of str</em><em>, </em><em>optional</em>) – User defined prior distributions, Must have appropriate format (see
+examples), Default is None</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether Stan intermediate output should be piped to
+terminal, Default is True</p></li>
+<li><p><strong>trace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether traceplots should be generated upon the run’s
+completion, Default is True</p></li>
+<li><p><strong>init_random</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether the initialization should be random or if it
+should use user specified values, Default is False</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – A positive integer used to seed the random number generation,
+Default is np.random.randint(0, 1E9)</p></li>
+<li><p><strong>int_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for intercept, Default is 10</p></li>
+<li><p><strong>rxn_ord_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for rxn order, Default is 0</p></li>
+<li><p><strong>sigma_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for sigma, Default is 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>point_estimates</strong> – Dictionary containing values corresponding to modes of posterior</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckbit.rxn_ord.MCMC">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">MCMC</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">model_name='rxn_ord'</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">warmup=None</em>, <em class="sig-param">iters=5000</em>, <em class="sig-param">chains=2</em>, <em class="sig-param">n_jobs=1</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">trace=True</em>, <em class="sig-param">init_random=False</em>, <em class="sig-param">control={'adapt_delta': 0.9999</em>, <em class="sig-param">'max_treedepth': 100}</em>, <em class="sig-param">int_init=10</em>, <em class="sig-param">rxn_ord_init=0</em>, <em class="sig-param">sigma_init=1</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.MCMC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bayesian inference using MCMC sampling for reaction order estimation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of Excel input file that contains the appropriately
+formated reaction order data (see examples)</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of model, used for saving/loading compilied Stan code, Default
+is ‘rxn_ord’</p></li>
+<li><p><strong>priors</strong> (<em>list of str</em><em>, </em><em>optional</em>) – User defined prior distributions, Must have appropriate format (see
+examples), Default is None</p></li>
+<li><p><strong>warmup</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of warmup iterations for MCMC sampler, Must be less than the
+number of total iterations, Default is None, which
+sets warmup equal to half of iters (the Stan default)</p></li>
+<li><p><strong>iters</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of total interations for MCMC sampler for each chain, Must be
+greater than the warmup, total number of samples useable for MCMC
+inference will equal (chains*(iters-warmup)), Default is 5000</p></li>
+<li><p><strong>chains</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of chains for MCMC sampler, Default is 2</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of jobs to run in parallel for MCMC sampler, maximum is
+number of cores the computer has, Default is 1</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether Stan intermediate output should be piped to
+terminal, Default is True</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – A positive integer used to seed the random number generation, use one seed even
+when multiple chains are used since the other chain’s seeds are generated
+from the first chain’s to avoid dependency among random number streams, set this
+seed for repeatable inference sampling runs, Default is np.random.randint(0, 1E9)</p></li>
+<li><p><strong>trace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether traceplots should be generated upon the run’s
+completion, Default is True</p></li>
+<li><p><strong>init_random</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether the initialization should be random or if it
+should use user specified values, Default is False</p></li>
+<li><p><strong>control</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of settings for MCMC sampler, Default is
+{‘adapt_delta’:0.9999, ‘max_treedepth’:100}, more information at:
+<a class="reference external" href="https://mc-stan.org/docs/2_23/reference-manual/hmc-algorithm-parameters.html">https://mc-stan.org/docs/2_23/reference-manual/hmc-algorithm-parameters.html</a></p></li>
+<li><p><strong>int_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for intercept, Default is 10</p></li>
+<li><p><strong>rxn_ord_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for rxn order, Default is 0</p></li>
+<li><p><strong>sigma_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for sigma, Default is 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>fit</strong> (<em>Stan object</em>) – Stan object containing results of the MCMC run</p></li>
+<li><p><strong>sample_vals</strong> (<em>dict</em>) – Dictionary of values collected by the MCMC sampler</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckbit.rxn_ord.StanModel_cache">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">StanModel_cache</code><span class="sig-paren">(</span><em class="sig-param">model_code</em>, <em class="sig-param">model_name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.StanModel_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for saving/loading compiled Stan code to avoid recompilation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_code</strong> (<em>str</em>) – Stan code written in proper format</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of model, used for saving/loading compilied Stan code</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sm</strong> – Stan object from pystan function StanModel</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Stan model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckbit.rxn_ord.VI">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">VI</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">model_name='rxn_ord'</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">iters=2000000</em>, <em class="sig-param">algorithm='fullrank'</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">sample_file='./samples.csv'</em>, <em class="sig-param">diagnostic_file='./diagnostics.csv'</em>, <em class="sig-param">grad_samples=1</em>, <em class="sig-param">elbo_samples=100</em>, <em class="sig-param">tol_rel_obj=0.01</em>, <em class="sig-param">adapt_iter=50</em>, <em class="sig-param">eval_elbo=100</em>, <em class="sig-param">output_samples=10000</em>, <em class="sig-param">eta=0.2</em>, <em class="sig-param">adapt_engaged=False</em>, <em class="sig-param">trace=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.VI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bayesian inference using VI for reaction order estimation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of Excel input file that contains the appropriately
+formated reaction order data (see examples)</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of model, used for saving/loading compilied Stan code, Default
+is ‘rxn_ord’</p></li>
+<li><p><strong>priors</strong> (<em>list of str</em><em>, </em><em>optional</em>) – User defined prior distributions, Must have appropriate format (see
+examples), Default is None</p></li>
+<li><p><strong>iters</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of iterations of the variational density to achieve
+minimizing the ELBO before the VI algorithm terminates, Default is
+2,000,000</p></li>
+<li><p><strong>algorithm</strong> (<em>str</em><em>, </em><em>optional</em>) – Algorithm to use for VI, either ‘meanfield’ (for uncorrelated
+posteriors) or ‘fullrank’ (for correlated posteriors), Default is
+‘fullrank’</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether Stan intermediate output should be piped to
+terminal, Default is True</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>optional</em>) – A positive integer used to seed the random number generation,
+Default is np.random.randint(0, 1E9)</p></li>
+<li><p><strong>sample_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename where the VI samples are saved to, Default is ‘./samples.
+csv’</p></li>
+<li><p><strong>diagnostic_file</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename where the VI diagonstics are saved to, Default is ‘./
+diagnostics.csv’</p></li>
+<li><p><strong>grad_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of gradient evaluations to make to estimate gradient for VI
+solver, Default is 1</p></li>
+<li><p><strong>elbo_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of elbo evaluations to make to estimate ELBO for VI solver,
+Default is 100</p></li>
+<li><p><strong>tol_rel_obj</strong> (<em>float</em><em>, </em><em>optional</em>) – Relative tolerance convergence criteria for median and mean of the
+change in the ELBO for VI solver, Default is 0.01</p></li>
+<li><p><strong>adapt_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterations for adaptive tuning of eta, Default is 50</p></li>
+<li><p><strong>eval_elbo</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterations between ELBO evaluations for VI solver,
+Default is 100</p></li>
+<li><p><strong>output_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of samples to draw from final approximation of posterior from
+VI solver, Default is 10,000</p></li>
+<li><p><strong>eta</strong> (<em>float</em><em>, </em><em>optional</em>) – Positive, stepsize weighing parameter for VI solver, Ignored if
+adapt_iter is True, Default is 0.2</p></li>
+<li><p><strong>adapt_engaged</strong> – Flag to signal whether eta should be automatically tuned, Default is
+False</p></li>
+<li><p><strong>trace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether traceplots should be generated upon the run’s
+completion, Default is True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>fit</strong> (<em>Stan object</em>) – Stan object containing results of the VI run</p></li>
+<li><p><strong>sample_vals</strong> (<em>dict</em>) – Dictionary of values collected by the VI sampler</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckbit.rxn_ord.rxn_ord_exp_data">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">rxn_ord_exp_data</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.rxn_ord_exp_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes Excel file with reaction order data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename of Excel input file that contains the appropriately
+formated reaction order data (see examples)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rxn_ord_data</strong> – Dictionary containing reaction order data inputs for Stan code</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckbit.rxn_ord.write_rxn_ord_stan_code">
+<code class="sig-prename descclassname">ckbit.rxn_ord.</code><code class="sig-name descname">write_rxn_ord_stan_code</code><span class="sig-paren">(</span><em class="sig-param">priors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.rxn_ord.write_rxn_ord_stan_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes Stan code used for reaction order estimation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>priors</strong> (<em>list of str</em><em>, </em><em>optional</em>) – User defined prior distributions, Must have appropriate format (see
+examples) in accordance with Stan, Default is None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>code_rxn_ord</strong> – Code written in Stan syntax used for reaction order estimation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pfr.html" class="btn btn-neutral float-right" title="pfr" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="app_ea.html" class="btn btn-neutral float-left" title="app_ea" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Max Cohen, Jon Lym
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

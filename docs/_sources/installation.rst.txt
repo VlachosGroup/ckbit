@@ -1,0 +1,101 @@
+.. _installation:
+
+Installation
+************
+
+Installation Options Overview
+-----------------------------
+The user has two different installation options available:
+
+1. Through the use of a setup.py file
+
+2. Through the use of a container 
+
+We recommend most users proceed with option 1 so they may interface with the 
+Python code as they would standardly. However, for users who are experienced
+with containers, the container provides a more simplified installation route.
+CKBIT requires more steps to install than a simple pip command due to the 
+complexity of the dependency providing the Bayesian inference capabilities.
+We guide the user through these steps below.
+
+--------------------------------------------------------------------------------
+
+Installation Option 1
+---------------------
+
+**Steps Overview**
+
+1. Installing Python
+2. Installing PyStan
+3. Installing CKBIT
+
+**Installing Python**
+
+Anaconda is the recommended method to install Python for scientific 
+applications. It is supported on Linux, Windows and Mac OS X. This software 
+runs on Python 3.7 and more recent versions. Anaconda can be downloaded here:
+https://www.anaconda.com/products/individual#download-section
+
+**Installing PyStan**
+
+PyStan is the Python library that provides the Bayesian inference functionality
+for CKBIT, so it is crucial to install it properly. This becomes complicated
+since there are multiple versions of PyStan with different installation pathways
+depending on whether the computer is running Linux, Windows, or a Mac OS. To run 
+CKBIT, **a user must first install PyStan with the CVODES library. Without the
+CVODES version of PyStan, CKBIT will not install.** For Windows users with 
+Anaconda, please see below for instructions. For all other users, please 
+reference the extensive documentation provided by PyStan on how to install their 
+software here: 
+https://pystan.readthedocs.io/en/latest/installation_beginner.html
+
+For details on how to get the CVODES version, reference this link:
+https://pystan.readthedocs.io/en/latest/installation_cvodes.html
+
+For Windows users with Anaconda, follow these steps:
+1. Open the Anaconda prompt
+2. Enter the following commands sequentially hitting y for yes when appropriate:
+::
+
+	get the goods
+	git config --system core.longpaths true
+	git clone --recursive https://github.com/stan-dev/pystan 
+	cd pystan
+	git checkout cvodes
+	git submodule update --recursive
+	python -c "import os, shutil; [shutil.rmtree(r'\\?\{}'.format(os.path.abspath(dirname)), ignore_errors=True) for dirname in [dirname for dirname, *_ in os.walk('pystan/stan') if any(dirname.endswith(ends) for ends in ['doc', 'test'])]]"
+	python -m pip install .
+
+**Installing CKBIT**
+
+
+
+--------------------------------------------------------------------------------
+
+Installation Option 2
+---------------------
+Once the article is about to be published, the contianer will be made 
+pubically available on Docker Hub. For now, we have a private download
+link created for reviewers.
+
+The Docker container can be accessed at this link:
+
+https://files.ccei.udel.edu/p/ckbit-reviewers/ckbit-container-1.0.0.tar
+
+username:	ckbit-reviewer
+
+password:	!!5-DISCOVERED-EXPERIENCE-determine-PARAGRAPH-6!!
+
+Once you have successfully downloaded the container:
+
+1. Load that image:
+::
+	
+	docker image load --input ckbit-container-1.0.0.tar
+
+2. Start a Python shell inside a container based off of that image:
+::
+
+    docker run --rm --interactive --tty ckbit:1.0.0 python3
+
+3. Interface with the Python promt to run CKBIT

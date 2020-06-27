@@ -261,7 +261,7 @@ def pfr_exp_data(filename, pH=False):
 def MCMC(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
          A0_up_lim=35, Ea_up_lim=350, warmup=None, iters=2000, chains=2, \
          n_jobs=1, verbose=True, trace=True, init_random=False,\
-         seed=np.random.randint(0, 1E9),\
+         seed=None,\
          control={'adapt_delta':0.8, 'max_treedepth':20}, rel_tol=5E-4, \
          abs_tol=5E-4, max_num_steps=100, A0_init=10, Ea_init=80, sigma_init=1):
     '''Bayesian inference using MCMC sampling for PFR parameter estimation
@@ -368,6 +368,7 @@ def MCMC(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
         init_list.append(dict_init)
     if init_random: init_list='random'
     #Run sampler
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.sampling(data=pfr_data, warmup=warmup, iter=iters, chains=chains, \
                       n_jobs=n_jobs, verbose=verbose, control=control, \
                       pars=['A0','Ea','sigma'], init=init_list, seed=seed)
@@ -390,7 +391,7 @@ def MCMC(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
 def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
        A0_up_lim=35, Ea_up_lim=350, iters=2000000, algorithm='fullrank', \
        verbose=True, rel_tol=5E-4, abs_tol=5E-4, max_num_steps=100, \
-       seed=np.random.randint(0, 1E9), \
+       seed=None, \
        sample_file='./samples.csv', diagnostic_file='./diagnostics.csv',\
        grad_samples=1, elbo_samples=100, tol_rel_obj=0.01, adapt_iter=50, \
        eval_elbo=100, output_samples=10000, eta=0.2, \
@@ -488,6 +489,7 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
     #Compile stan model or open old one
     sm = StanModel_cache(model_code=pfr_code, model_name=model_name)
     #Run variational inference
+    if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.vb(data=pfr_data, algorithm=algorithm, iter=iters, \
                 verbose=verbose, pars=['A0','Ea','sigma'], \
                 sample_file=sample_file, diagnostic_file=diagnostic_file, \
@@ -526,7 +528,8 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
           ' The data points should approach and stabilize at a maximum'\
           'value, and there should be at least 10,000 iterations. If not ' \
           'converged, run again with a doubled eta value. Default eta value ' \
-          'is 0.2 . It is recommended to run this twice and ensure the ' \
+          'is 0.2 . It is recommended to run this twice with different ' \
+          'random seed initializations and ensure the ' \
           'results are consistent.'.format(elbo_val))
     data = pd.read_csv(diagnostic_file ,skiprows=range(0,21), \
                        names=['iters','times','elbo'])
@@ -548,7 +551,7 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
 #Code to run PFR MAP Estimate
 def MAP(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
          A0_up_lim=35, Ea_up_lim=350, init_random=False, \
-         seed=np.random.randint(0, 1E9), \
+         seed=None, \
          verbose=True, rel_tol=5E-4, abs_tol=5E-4, max_num_steps=100, \
          A0_init=10, Ea_init=80, sigma_init=1):
     '''MAP estimation for PFR parameter estimation
@@ -625,18 +628,22 @@ def MAP(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
     init_list.append(dict_init)
     if init_random: init_list='random'
     #Run point estimation
+    if seed==None: seed=np.random.randint(0, 1E9)
     point_estimates = sm.optimizing(data=pfr_data, verbose=verbose,\
                                     init=init_list, seed=seed)
     #Generate and print results
     data_table = []
     for i in point_estimates:
         if i=='A0' or i=='Ea':
-            count = 1
-            for j in range(len(point_estimates[i])):
-                name = '{}[{}]'.format(i,count)
-                count = count + 1
-                val = round(float(point_estimates[i][j]),2)
-                data_table.append([name,val])
+            if rxns==1:
+                data_table.append([i,point_estimates[i]])
+            else:
+                count = 1
+                for j in range(len(point_estimates[i])):
+                    name = '{}[{}]'.format(i,count)
+                    count = count + 1
+                    val = round(float(point_estimates[i][j]),2)
+                    data_table.append([name,val])
         elif i=='sigma':
             data_table.append([i,point_estimates[i]])
     print(tabulate(data_table, headers=['Parameter', 'Estimate']))     

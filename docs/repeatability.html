@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Chemical Kinetic Bayesian Inference Toolbox (CKBIT) &mdash; CKBIT  documentation</title>
+  <title>Repeatability &mdash; CKBIT  documentation</title>
   
 
   
@@ -82,12 +82,14 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Repeatability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app_ea.html">app_ea</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rxn_ord.html">rxn_ord</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pfr.html">pfr</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cstr.html">cstr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
 </ul>
 
             
@@ -133,13 +135,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</li>
+      <li>Repeatability</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/includeme.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/repeatability.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,11 +154,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="chemical-kinetic-bayesian-inference-toolbox-ckbit">
-<h1>Chemical Kinetic Bayesian Inference Toolbox (CKBIT)<a class="headerlink" href="#chemical-kinetic-bayesian-inference-toolbox-ckbit" title="Permalink to this headline">¶</a></h1>
-<p>License
-This project is licensed under the MIT License - see the LICENSE file for details.</p>
-<p>More documentation to come</p>
+  <div class="section" id="repeatability">
+<span id="id1"></span><h1>Repeatability<a class="headerlink" href="#repeatability" title="Permalink to this headline">¶</a></h1>
+<p>Bayesian inference techniques rely upon stochastic
+processes. For example, MCMC sampling collects
+samples from probability distributions in a stochastic
+manner that enables us to reconstruct the distributions.
+Each time this sampling occurs, the initialization and
+proposals of steps have a stochastic nature that generate
+unique sets of samples for each run. However, well
+converged runs should produce highly similar sample
+statistics (such as mean and standard deviation). Again,
+while these sample statistics are highly similar,
+the samples from which they are produced are unique. The
+MAP functionality also relies upon stochastic processes,
+so these results may slightly vary as well.</p>
+<p>Sometimes we want to repeat the exact results between
+runs of the software. CKBIT enables this functionality
+through the seed variable for each function. Note, the
+init variable for MAP and MCMC functions must also be set
+for repeat results to be obtained, but this is easy to
+accomplish by not specifying the init variables in the
+input so the default variables are specified.</p>
+<p>Users should note that repeatability occurs on a given
+computer, but not across different computers. To clarify,
+computer A will always give the same set of results (call
+them results A) if the seed and init variables have been
+specified in a script. Computer B will always give the same
+set of results (call them results B) for that same specified
+script. However, results A will be different from results
+B. This is akin to the collected samples of results A being
+different from the collected samples of results B. Again,
+while the samples will be different, the sample statistics
+should be highly similar for well converged runs.
+The repeatability is limited to within a given computer
+and does not extend across computers because of the way
+C++ interacts with computer environments. Specifically, C++
+is a coding language that does not fully specify how floating
+point arithmetic is implemented. More details on this
+repeatability topic can be found here:
+<a class="reference external" href="https://mc-stan.org/docs/2_23/reference-manual/reproducibility-chapter.html">https://mc-stan.org/docs/2_23/reference-manual/reproducibility-chapter.html</a></p>
+<p>While the exact same numerical results cannot be generated
+across different computers, the summary results will be
+highly similar for well converged runs. This is the
+standard for a stochastic process like Bayesian inference.</p>
 </div>
 
 

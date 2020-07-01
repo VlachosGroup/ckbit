@@ -1,5 +1,5 @@
 #
-# This is the definition of the CKBIT Docker container.  Based off
+# This is the definition of the CKBIT Docker container.  Derives from
 # the official Python 3 Anaconda container:
 #
 FROM continuumio/anaconda3:latest
@@ -12,14 +12,12 @@ RUN apt-get -y install build-essential
 RUN conda update -n base -c defaults conda
 
 #
-# Install NumPy, Cython, and Python 3.8 or better into
-# a new environment and set that as the default in root's
-# .bashrc:
+# Install NumPy and Cython into the default environment:
 #
 RUN conda install numpy cython>=0.22
 
 #
-# Copy CKBIT source  into the container:
+# Copy CKBIT source into the container:
 #
 RUN mkdir /tmp/ckbit
 COPY pystan-install.sh pystan-test.py setup.py /tmp/ckbit/
@@ -40,5 +38,5 @@ RUN python setup.py install
 #
 # Remove the CKBIT source:
 #
-#WORKDIR /
-#RUN rm -rf /tmp/ckbit
+WORKDIR /
+RUN rm -rf /tmp/ckbit

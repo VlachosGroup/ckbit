@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; CKBIT  documentation</title>
+  <title>Troubleshooting &mdash; CKBIT  documentation</title>
   
 
   
@@ -35,9 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="prev" title="cstr" href="cstr.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,7 +80,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repeatability.html">Repeatability</a></li>
@@ -90,7 +88,13 @@
 <li class="toctree-l1"><a class="reference internal" href="rxn_ord.html">rxn_ord</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pfr.html">pfr</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cstr.html">cstr</a></li>
-<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#model-loading-troubleshooting">Model Loading Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#map-troubleshooting">MAP Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mcmc-troubleshooting">MCMC Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vi-troubleshooting">VI Troubleshooting</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -136,10 +140,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Python Module Index</li>
+      <li>Troubleshooting</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -151,50 +159,68 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-c"><strong>c</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-c"><td></td><td>
-       <strong>c</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">ckbit</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="app_ea.html#module-ckbit.app_ea"><code class="xref">ckbit.app_ea</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="cstr.html#module-ckbit.cstr"><code class="xref">ckbit.cstr</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="pfr.html#module-ckbit.pfr"><code class="xref">ckbit.pfr</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="rxn_ord.html#module-ckbit.rxn_ord"><code class="xref">ckbit.rxn_ord</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="troubleshooting">
+<span id="id1"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>Compiled here are some common troubleshooting approaches
+we would recommend if you are encountering difficulties
+with different functionalities of CKBIT.</p>
+<div class="section" id="model-loading-troubleshooting">
+<h2>Model Loading Troubleshooting<a class="headerlink" href="#model-loading-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>CKBIT is designed to store compiled models so they do
+not need to be recompiled each time they are run. While
+this saves significant time, sometimes the model storage
+can encounter errors if other operations on the computer
+conflict with it. For those cases, we recommend opening
+the folder where the script is being run and deleting the
+stored model. This will cause the model to be compiled
+again and should solve the problem.</p>
+</div>
+<div class="section" id="map-troubleshooting">
+<h2>MAP Troubleshooting<a class="headerlink" href="#map-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>Due to sensitivity of the initial starting conditions
+and complex models being optimized, the MAP functionality
+can encounter challenges. We recommend specifying the
+input variable seed with an integer and running the
+function. If this run fails, specify seed with a new
+integer. In our experience, the MAP functionality
+usually works within 5 different seed specifications.</p>
+</div>
+<div class="section" id="mcmc-troubleshooting">
+<h2>MCMC Troubleshooting<a class="headerlink" href="#mcmc-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>MCMC runs have convergence checks detailed in the
+Appendix of the publication. When these convergence checks
+are showing that the sampled values from the distribution
+are not well converged, we recommend increasing the control
+criteria like so: control={‘adapt_delta’:0.99999999,
+‘max_treedepth’:100}. Please reference Figure 8 of the
+publication to see how to properly implement this control
+variable. In our experience, this will solve
+most issues experienced with these chemical models.</p>
+</div>
+<div class="section" id="vi-troubleshooting">
+<h2>VI Troubleshooting<a class="headerlink" href="#vi-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>VI runs also have convergence checks detailed in the
+Appendix of the publication. When these convergence
+checks are showing that the distributions did not
+converge well, please try specifying more informative
+priors and running the model again. We have found that
+for some datasets, the VI estimations will not converge
+without more informed prior distributions being implemented.</p>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="cstr.html" class="btn btn-neutral float-left" title="cstr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

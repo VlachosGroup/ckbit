@@ -12,10 +12,12 @@ Welcome to CKBIT's documentation!
 
    readme
    installation
+   repeatability
    app_ea
    rxn_ord
    pfr
    cstr
+   troubleshooting
 
 
 Indices and tables

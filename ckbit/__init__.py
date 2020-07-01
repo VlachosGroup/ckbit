@@ -7,7 +7,7 @@
 # present, too:
 #
 name = 'ckbit'
-__version__ = '1.0.0'
+__version__ = '0.0.1'
 
 # Pull rxn_ord, pfr, cstr, app_ea in as ckbit.<x>:
 from . import rxn_ord

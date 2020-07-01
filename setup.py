@@ -69,7 +69,7 @@ if not( len(sys.argv) >= 2 and ('--help' in sys.argv[1:] or sys.argv[1] in ('--h
 
 setuptools_info = {
     'name': 'ckbit',
-    'version': '1.0.0',
+    'version': '0.0.1',
     'author': 'Vlachos Research Group',
     'author_email': 'vlachos@udel.edu',
     'description': 'Kinetic Bayesian Inference',

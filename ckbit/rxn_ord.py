@@ -198,7 +198,8 @@ def VI(filename, model_name='rxn_ord', priors=None,\
          sample_file='./samples.csv', diagnostic_file='./diagnostics.csv',\
          grad_samples=1, elbo_samples=100, tol_rel_obj=0.01, adapt_iter=50, \
          eval_elbo=100, output_samples=10000, eta=0.2, \
-         adapt_engaged=False, trace=True):
+         adapt_engaged=False, trace=True, init_random=False,\
+         int_init=10, rxn_ord_init=0, sigma_init=1):
     '''Bayesian inference using VI for reaction order estimation
     
     Parameters
@@ -258,6 +259,16 @@ def VI(filename, model_name='rxn_ord', priors=None,\
         trace : bool, optional
             Flag to signal whether traceplots should be generated upon the run's
             completion, Default is True
+        int_init : float, optional
+            Initialization point for the sampler for intercept, Default is 10
+        rxn_ord_init : float, optional
+            Initialization point for the sampler for rxn_ord, Default is 0
+        sigma_init : float, optional
+            Initialization point for the sampler for sigma, Default is 1
+        init_random : bool, optional
+            Flag to signal whether the initialization should be random or if it 
+            should use user specified values, Default is False
+
     Returns
     -------
         fit : Stan object
@@ -272,10 +283,13 @@ def VI(filename, model_name='rxn_ord', priors=None,\
     rxn_ord_code = write_rxn_ord_stan_code(priors=priors)
     #Compile stan model or open old one
     sm = StanModel_cache(model_code=rxn_ord_code, model_name=model_name)
+    #Write initialization list
+    dict_init = {'intercept':int_init, 'rxn_ord':rxn_ord_init, 'sigma':sigma_init}
+    if init_random: dict_init='random'
     #Run VI estimation
     if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.vb(data=rxn_ord_data, algorithm=algorithm, iter=iters, \
-                verbose=verbose, seed=seed,\
+                verbose=verbose, seed=seed, init=dict_init,\
                 sample_file=sample_file, diagnostic_file=diagnostic_file, \
                 grad_samples=grad_samples, elbo_samples=elbo_samples, \
                 tol_rel_obj=tol_rel_obj, adapt_iter=adapt_iter, \

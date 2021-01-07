@@ -395,7 +395,8 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
        sample_file='./samples.csv', diagnostic_file='./diagnostics.csv',\
        grad_samples=1, elbo_samples=100, tol_rel_obj=0.01, adapt_iter=50, \
        eval_elbo=100, output_samples=10000, eta=0.2, \
-       adapt_engaged=False, trace=True):
+       adapt_engaged=False, trace=True, init_random=False, \
+       A0_init=10, Ea_init=80, sigma_init=1):
     '''Bayesian inference using VI for PFR parameter estimation
     
     Parameters
@@ -469,6 +470,16 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
         trace : bool, optional
             Flag to signal whether traceplots should be generated upon the run's
             completion, Default is True
+        init_random : bool, optional
+            Flag to signal whether the initialization should be random or if it 
+            should use user specified values, Default is False
+        A0_init : float, optional
+            Initialization point for the sampler for A0, Default is 10
+        Ea_init : float, optional
+            Initialization point for the sampler for Ea, Default is 80
+        sigma_init : float, optional
+            Initialization point for the sampler for sigma, Default is 1
+
     Returns
     -------
         fit : Stan object
@@ -488,10 +499,18 @@ def VI(filename, model_name='pfr', pH=False, R_units='kJ/mol/K', priors=None,\
                                max_num_steps=max_num_steps)
     #Compile stan model or open old one
     sm = StanModel_cache(model_code=pfr_code, model_name=model_name)
+    #Write initialization dictionary
+    A0 = []
+    Ea = []
+    for j in range(rxns):
+        A0.append(A0_init)
+        Ea.append(Ea_init)
+    dict_init = {'A0':A0, 'Ea':Ea, 'sigma':sigma_init}
+    if init_random: dict_init='random'
     #Run variational inference
     if seed==None: seed=np.random.randint(0, 1E9)
     fit = sm.vb(data=pfr_data, algorithm=algorithm, iter=iters, \
-                verbose=verbose, pars=['A0','Ea','sigma'], \
+                verbose=verbose, pars=['A0','Ea','sigma'], init=dict_init, \
                 sample_file=sample_file, diagnostic_file=diagnostic_file, \
                 grad_samples=grad_samples, elbo_samples=elbo_samples, \
                 tol_rel_obj=tol_rel_obj, adapt_iter=adapt_iter, \

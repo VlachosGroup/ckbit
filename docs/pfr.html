@@ -282,7 +282,7 @@ seed for repeatable inference sampling runs, Default is np.random.randint(0, 1E9
 
 <dl class="function">
 <dt id="ckbit.pfr.VI">
-<code class="sig-prename descclassname">ckbit.pfr.</code><code class="sig-name descname">VI</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">model_name='pfr'</em>, <em class="sig-param">pH=False</em>, <em class="sig-param">R_units='kJ/mol/K'</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">A0_up_lim=35</em>, <em class="sig-param">Ea_up_lim=350</em>, <em class="sig-param">iters=2000000</em>, <em class="sig-param">algorithm='fullrank'</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">rel_tol=0.0005</em>, <em class="sig-param">abs_tol=0.0005</em>, <em class="sig-param">max_num_steps=100</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">sample_file='./samples.csv'</em>, <em class="sig-param">diagnostic_file='./diagnostics.csv'</em>, <em class="sig-param">grad_samples=1</em>, <em class="sig-param">elbo_samples=100</em>, <em class="sig-param">tol_rel_obj=0.01</em>, <em class="sig-param">adapt_iter=50</em>, <em class="sig-param">eval_elbo=100</em>, <em class="sig-param">output_samples=10000</em>, <em class="sig-param">eta=0.2</em>, <em class="sig-param">adapt_engaged=False</em>, <em class="sig-param">trace=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.pfr.VI" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">ckbit.pfr.</code><code class="sig-name descname">VI</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">model_name='pfr'</em>, <em class="sig-param">pH=False</em>, <em class="sig-param">R_units='kJ/mol/K'</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">A0_up_lim=35</em>, <em class="sig-param">Ea_up_lim=350</em>, <em class="sig-param">iters=2000000</em>, <em class="sig-param">algorithm='fullrank'</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">rel_tol=0.0005</em>, <em class="sig-param">abs_tol=0.0005</em>, <em class="sig-param">max_num_steps=100</em>, <em class="sig-param">seed=None</em>, <em class="sig-param">sample_file='./samples.csv'</em>, <em class="sig-param">diagnostic_file='./diagnostics.csv'</em>, <em class="sig-param">grad_samples=1</em>, <em class="sig-param">elbo_samples=100</em>, <em class="sig-param">tol_rel_obj=0.01</em>, <em class="sig-param">adapt_iter=50</em>, <em class="sig-param">eval_elbo=100</em>, <em class="sig-param">output_samples=10000</em>, <em class="sig-param">eta=0.2</em>, <em class="sig-param">adapt_engaged=False</em>, <em class="sig-param">trace=True</em>, <em class="sig-param">init_random=False</em>, <em class="sig-param">A0_init=10</em>, <em class="sig-param">Ea_init=80</em>, <em class="sig-param">sigma_init=1</em><span class="sig-paren">)</span><a class="headerlink" href="#ckbit.pfr.VI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bayesian inference using VI for PFR parameter estimation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -331,6 +331,11 @@ adapt_iter is True, Default is 0.2</p></li>
 False</p></li>
 <li><p><strong>trace</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether traceplots should be generated upon the run’s
 completion, Default is True</p></li>
+<li><p><strong>init_random</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to signal whether the initialization should be random or if it
+should use user specified values, Default is False</p></li>
+<li><p><strong>A0_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for A0, Default is 10</p></li>
+<li><p><strong>Ea_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for Ea, Default is 80</p></li>
+<li><p><strong>sigma_init</strong> (<em>float</em><em>, </em><em>optional</em>) – Initialization point for the sampler for sigma, Default is 1</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

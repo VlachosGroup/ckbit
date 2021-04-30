@@ -7,7 +7,7 @@ Installation Options Overview
 -----------------------------
 The user has two different installation options available:
 
-1. Through the use of a setup.py file
+1. Through the use of a pip command
 
 2. Through the use of a Docker container image
 
@@ -47,10 +47,10 @@ CVODES version of PyStan, CKBIT will not install.** For Windows users, please
 install Anaconda and see below for instructions. For all other users, please 
 reference the documentation provided by PyStan on how to install their 
 software here: 
-https://pystan.readthedocs.io/en/latest/installation_beginner.html
+https://pystan2.readthedocs.io/en/latest/installation_beginner.html
 
 For details on how to get the CVODES version, reference this link:
-https://pystan.readthedocs.io/en/latest/installation_cvodes.html
+https://pystan2.readthedocs.io/en/latest/installation_cvodes.html
 
 For Windows users with Anaconda, follow these steps:
 
@@ -103,8 +103,8 @@ y for yes when appropriate:
 ::
 
 	git config --system core.longpaths true
-	git clone --recursive https://github.com/stan-dev/pystan 
-	cd pystan
+	git clone --recursive https://github.com/stan-dev/pystan2 
+	cd pystan2
 	git checkout cvodes
 	git submodule update --recursive
 	python -c "import os, shutil; [shutil.rmtree(r'\\?\{}'.format(os.path.abspath(dirname)), ignore_errors=True) for dirname in [dirname for dirname, *_ in os.walk('pystan/stan') if any(dirname.endswith(ends) for ends in ['doc', 'test'])]]"
@@ -113,66 +113,20 @@ y for yes when appropriate:
 **Installing CKBIT**
 
 Now that the CVODES version of PyStan is installed, the user can now install
-CKBIT. Note, once this software is public, we will provide a simpler pathway for
-installation through PyPI for users. For now, follow these instructions:   
-
-1. Download the zip file with 
-CKBIT.
-
-2. Unzip the files to a known location on your 
-machine. 
-
-3. Navigate through these files until you find the folder that contains the
-setup.py file. Copy the location of this folder.
-
-4. Open the Anaconda command prompt and navigate to the location of the folder
-copied in step 3. This navigation can be performed with the following code 
-entered into the Anaconda command prompt with folder_path replaced with the 
-copied location from step 3:
+CKBIT. Run the command in the anaconda prompt of:
 ::
 
-	cd folder_path
-	
-5. Input the following code into the Anaconda command prompt:
-::
-
-	python setup.py install
-	
-The user will now be able to run CKBIT as they would any other Python package.
-
-Note: for users interested in writing their data to Excel workbooks, please 
-ensure you have the dependency named openpyxl. You can check if you already
-have it installed by following the first two steps of the **Installing PyStan**
-instructions. If you do not have it, enter this code into the Anaconda
-command prompt:
-::
-
-	conda install -c anaconda openpyxl
-
-Note: for users interested in making visually appealing distribution plots, 
-please ensure you have the dependency named seaborn. You can check if you 
-already have it installed by following the first two steps of the 
-**Installing PyStan** instructions. If you do not have it, enter this code 
-into the Anaconda command prompt:
-::
-
-	conda install -c anaconda seaborn
+	pip install ckbit
 
 --------------------------------------------------------------------------------
 
 Installation Option 2
 ---------------------
-Once the article is about to be published, the container will be made 
-publicly available on Docker Hub. For now, we have a private download
-link created for reviewers.
+The container is publicly available on Docker Hub. 
 
 A Docker container image can be accessed at this link:
 
-https://files.ccei.udel.edu/p/ckbit-reviewers/ckbit-container-latest.tar
 
-username:	ckbit-reviewer
-
-password:	!!5-DISCOVERED-EXPERIENCE-determine-PARAGRAPH-6!!
 
 Once you have successfully downloaded the container:
 

@@ -69,7 +69,7 @@ if not( len(sys.argv) >= 2 and ('--help' in sys.argv[1:] or sys.argv[1] in ('--h
 
 setuptools_info = {
     'name': 'ckbit',
-    'version': '0.0.1',
+    'version': '1.0.0',
     'author': 'Vlachos Research Group',
     'author_email': 'vlachos@udel.edu',
     'description': 'Kinetic Bayesian Inference',
@@ -85,6 +85,8 @@ setuptools_info = {
         'arviz>=0.4',
         'pandas>=0.25',
         'xlrd',
+        'openpyxl>=3.0.0',
+        'seaborn>='0.9.0',
         'matplotlib>=3.1',
         ],
     'classifiers': [

@@ -138,7 +138,7 @@ CURRENT_DIR="$(pwd)"
 
 if [ $NO_CLONE -eq 0 ]; then
     doCmd $VERBOSE -e "failed to clone PyStan github repository" -s "OK - cloned git repository" \
-            git clone --recursive https://github.com/stan-dev/pystan "$BUILD_DIR"
+            git clone --recursive https://github.com/stan-dev/pystan2 "$BUILD_DIR"
 fi
 pushd "$BUILD_DIR" >/dev/null 2>&1
 if [ $? -ne 0 ]; then

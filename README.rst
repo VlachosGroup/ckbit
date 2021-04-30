@@ -8,12 +8,12 @@ by the Vlachos Research Group at the University of Delaware.
 
 Documentation
 -------------
-Please see the html files in the docs folder for the 
-documentation.
+Documentation can be found at this webiste:
+https://vlachosgroup.github.io/ckbit/
 
 Examples
 --------
-There are examples of the code in the examples 
+There are examples of the code in the Github examples 
 folder. The examples are provided in both Python scripts 
 and in Jupyter notebooks. Ensure the accompanying Excel 
 files are used as templates for data entry.

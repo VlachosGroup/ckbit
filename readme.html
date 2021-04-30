@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Chemical Kinetic Bayesian Inference Toolbox (CKBIT) &mdash; CKBIT  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to CKBIT’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CKBIT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developers">Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-and-questions">Contributing and Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#funding">Funding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-thanks">Special Thanks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repeatability.html">Repeatability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_ea.html">app_ea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rxn_ord.html">rxn_ord</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pfr.html">pfr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cstr.html">cstr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CKBIT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Chemical Kinetic Bayesian Inference Toolbox (CKBIT)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chemical-kinetic-bayesian-inference-toolbox-ckbit">
+<h1>Chemical Kinetic Bayesian Inference Toolbox (CKBIT)<a class="headerlink" href="#chemical-kinetic-bayesian-inference-toolbox-ckbit" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>C</strong>hemical <strong>K</strong>inetic <strong>B</strong>ayesian <strong>I</strong>nference
+<strong>T</strong>oolbox (CKBIT) is a Python library for applying
+Bayesian inference to kinetic rate parameters developed
+by the Vlachos Research Group at the University of Delaware.</p>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Please see the html files in the docs folder for the
+documentation.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>There are examples of the code in the examples
+folder. The examples are provided in both Python scripts
+and in Jupyter notebooks. Ensure the accompanying Excel
+files are used as templates for data entry.</p>
+</div>
+<div class="section" id="developers">
+<h2>Developers<a class="headerlink" href="#developers" title="Permalink to this headline">¶</a></h2>
+<p>Max Cohen (<a class="reference external" href="mailto:maxrc&#37;&#52;&#48;udel&#46;edu">maxrc<span>&#64;</span>udel<span>&#46;</span>edu</a>)</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>PyStan: Interfaces with Stan for optimized Bayesian
+inference computation</p></li>
+<li><p>Datetime: Measures computational runtime</p></li>
+<li><p>NumPy: Provides efficient array manipulation</p></li>
+<li><p>Pickle: Creates and stores portable, serialized
+representations of Python objects for repeat model usage</p></li>
+<li><p>Hashlib: Interfaces to hash functions for naming stored
+models</p></li>
+<li><p>Matplotlib: Visualizes data outputs</p></li>
+<li><p>Pandas: Interfaces with Excel for facile data processing
+of inputs</p></li>
+<li><p>ArviZ: Provides specialized visualization of inference
+outputs</p></li>
+<li><p>Vunits: Converts common physical units</p></li>
+<li><p>Tabulate: Generates tabulated displays of inference
+outputs</p></li>
+</ul>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>See the installation html file in the docs folder
+for detailed instructions.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This project is licensed under the MIT License -
+see the LICENSE file for details.</p>
+</div>
+<div class="section" id="contributing-and-questions">
+<h2>Contributing and Questions<a class="headerlink" href="#contributing-and-questions" title="Permalink to this headline">¶</a></h2>
+<p>If you have a suggestion, find a bug, or have a question,
+please post to our Issues page on the Github.</p>
+</div>
+<div class="section" id="funding">
+<h2>Funding<a class="headerlink" href="#funding" title="Permalink to this headline">¶</a></h2>
+<p>We acknowledge support by the RAPID manufacturing institute,
+supported by the Department of Energy (DOE) Advanced
+Manufacturing Office (AMO), award number DE-EE0007888-9.5.
+RAPID projects at the University of Delaware are also made
+possible in part by funding provided by the State of Delaware.
+The Delaware Energy Institute gratefully acknowledges the
+support and partnership of the State of Delaware in furthering
+the essential scientific research being conducted through the
+RAPID projects.</p>
+</div>
+<div class="section" id="special-thanks">
+<h2>Special Thanks<a class="headerlink" href="#special-thanks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Dr. Jonathan Lym</p></li>
+<li><p>Dr. Jeffrey Frey</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to CKBIT’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Max Cohen, Jon Lym
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

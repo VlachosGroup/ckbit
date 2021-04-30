@@ -165,7 +165,7 @@
 <h2>Installation Options Overview<a class="headerlink" href="#installation-options-overview" title="Permalink to this headline">¶</a></h2>
 <p>The user has two different installation options available:</p>
 <ol class="arabic simple">
-<li><p>Through the use of a setup.py file</p></li>
+<li><p>Through the use of a pip command</p></li>
 <li><p>Through the use of a Docker container image</p></li>
 </ol>
 <p>We recommend most users proceed with option 1 so they may interface with the
@@ -199,9 +199,9 @@ CVODES version of PyStan, CKBIT will not install.</strong> For Windows users, pl
 install Anaconda and see below for instructions. For all other users, please
 reference the documentation provided by PyStan on how to install their
 software here:
-<a class="reference external" href="https://pystan.readthedocs.io/en/latest/installation_beginner.html">https://pystan.readthedocs.io/en/latest/installation_beginner.html</a></p>
+<a class="reference external" href="https://pystan2.readthedocs.io/en/latest/installation_beginner.html">https://pystan2.readthedocs.io/en/latest/installation_beginner.html</a></p>
 <p>For details on how to get the CVODES version, reference this link:
-<a class="reference external" href="https://pystan.readthedocs.io/en/latest/installation_cvodes.html">https://pystan.readthedocs.io/en/latest/installation_cvodes.html</a></p>
+<a class="reference external" href="https://pystan2.readthedocs.io/en/latest/installation_cvodes.html">https://pystan2.readthedocs.io/en/latest/installation_cvodes.html</a></p>
 <p>For Windows users with Anaconda, follow these steps:</p>
 <ol class="arabic simple">
 <li><p>Open the Anaconda prompt application.</p></li>
@@ -244,8 +244,8 @@ be used for each dependency:</p>
 following commands into the Anaconda command prompt sequentially hitting
 y for yes when appropriate:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">system</span> <span class="n">core</span><span class="o">.</span><span class="n">longpaths</span> <span class="n">true</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">stan</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pystan</span>
-<span class="n">cd</span> <span class="n">pystan</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">stan</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pystan2</span>
+<span class="n">cd</span> <span class="n">pystan2</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">cvodes</span>
 <span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">recursive</span>
 <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import os, shutil; [shutil.rmtree(r&#39;</span><span class="se">\\</span><span class="s2">?\</span><span class="si">{}</span><span class="s2">&#39;.format(os.path.abspath(dirname)), ignore_errors=True) for dirname in [dirname for dirname, *_ in os.walk(&#39;pystan/stan&#39;) if any(dirname.endswith(ends) for ends in [&#39;doc&#39;, &#39;test&#39;])]]&quot;</span>
@@ -254,53 +254,16 @@ y for yes when appropriate:</p>
 </div>
 <p><strong>Installing CKBIT</strong></p>
 <p>Now that the CVODES version of PyStan is installed, the user can now install
-CKBIT. Note, once this software is public, we will provide a simpler pathway for
-installation through PyPI for users. For now, follow these instructions:</p>
-<p>1. Download the zip file with
-CKBIT.</p>
-<p>2. Unzip the files to a known location on your
-machine.</p>
-<p>3. Navigate through these files until you find the folder that contains the
-setup.py file. Copy the location of this folder.</p>
-<p>4. Open the Anaconda command prompt and navigate to the location of the folder
-copied in step 3. This navigation can be performed with the following code
-entered into the Anaconda command prompt with folder_path replaced with the
-copied location from step 3:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">folder_path</span>
-</pre></div>
-</div>
-<p>5. Input the following code into the Anaconda command prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
-</pre></div>
-</div>
-<p>The user will now be able to run CKBIT as they would any other Python package.</p>
-<p>Note: for users interested in writing their data to Excel workbooks, please
-ensure you have the dependency named openpyxl. You can check if you already
-have it installed by following the first two steps of the <strong>Installing PyStan</strong>
-instructions. If you do not have it, enter this code into the Anaconda
-command prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">anaconda</span> <span class="n">openpyxl</span>
-</pre></div>
-</div>
-<p>Note: for users interested in making visually appealing distribution plots,
-please ensure you have the dependency named seaborn. You can check if you
-already have it installed by following the first two steps of the
-<strong>Installing PyStan</strong> instructions. If you do not have it, enter this code
-into the Anaconda command prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">anaconda</span> <span class="n">seaborn</span>
+CKBIT. Run the command in the anaconda prompt of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ckbit</span>
 </pre></div>
 </div>
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-option-2">
 <h2>Installation Option 2<a class="headerlink" href="#installation-option-2" title="Permalink to this headline">¶</a></h2>
-<p>Once the article is about to be published, the container will be made
-publicly available on Docker Hub. For now, we have a private download
-link created for reviewers.</p>
+<p>The container is publicly available on Docker Hub.</p>
 <p>A Docker container image can be accessed at this link:</p>
-<p><a class="reference external" href="https://files.ccei.udel.edu/p/ckbit-reviewers/ckbit-container-latest.tar">https://files.ccei.udel.edu/p/ckbit-reviewers/ckbit-container-latest.tar</a></p>
-<p>username:       ckbit-reviewer</p>
-<p>password:       !!5-DISCOVERED-EXPERIENCE-determine-PARAGRAPH-6!!</p>
 <p>Once you have successfully downloaded the container:</p>
 <p>1. Load the image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">load</span> <span class="o">--</span><span class="nb">input</span> <span class="n">ckbit</span><span class="o">-</span><span class="n">container</span><span class="o">-</span><span class="n">latest</span><span class="o">.</span><span class="n">tar</span>

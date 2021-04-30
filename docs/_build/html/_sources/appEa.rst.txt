@@ -1,0 +1,6 @@
+.. _appEa:
+
+Header
+******
+
+.. autofunction:: kbi.appEa	

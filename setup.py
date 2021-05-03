@@ -86,7 +86,7 @@ setuptools_info = {
         'pandas>=0.25',
         'xlrd',
         'openpyxl>=3.0.0',
-        'seaborn>='0.9.0',
+        'seaborn>=0.9.0',
         'matplotlib>=3.1',
         ],
     'classifiers': [

@@ -193,7 +193,8 @@ runs on Python 3.7 and more recent versions. Anaconda can be downloaded here:
 <p>PyStan is the Python library that provides the Bayesian inference functionality
 for CKBIT, so it is crucial to install it properly. This becomes complicated
 since there are multiple versions of PyStan with different installation pathways
-depending on whether the computer is running Linux, Windows, or a Mac OS. To run
+depending on whether the computer is running Linux, Windows, or a Mac OS. We are
+using an achived version of PyStan2 to maintain CKBIT’s functionality. To run
 CKBIT, <strong>a user must first install PyStan with the CVODES library. Without the
 CVODES version of PyStan, CKBIT will not install.</strong> For Windows users, please
 install Anaconda and see below for instructions. For all other users, please
@@ -264,18 +265,30 @@ CKBIT. Run the command in the anaconda prompt of:</p>
 <h2>Installation Option 2<a class="headerlink" href="#installation-option-2" title="Permalink to this headline">¶</a></h2>
 <p>The container is publicly available on Docker Hub.</p>
 <p>A Docker container image can be accessed at this link:</p>
+<p><a class="reference external" href="https://hub.docker.com/repository/docker/vlachosgroup/ckbit">https://hub.docker.com/repository/docker/vlachosgroup/ckbit</a></p>
 <p>Once you have successfully downloaded the container:</p>
 <p>1. Load the image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">image</span> <span class="n">load</span> <span class="o">--</span><span class="nb">input</span> <span class="n">ckbit</span><span class="o">-</span><span class="n">container</span><span class="o">-</span><span class="n">latest</span><span class="o">.</span><span class="n">tar</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">vlachosgroup</span><span class="o">/</span><span class="n">ckbit</span>
+</pre></div>
+</div>
+<p>Note: By default docker pulls the version with the tag = “latest”, you can also explicitly pull down the correct version using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">vlachosgroup</span><span class="o">/</span><span class="n">ckbit</span><span class="p">:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">docker</span> <span class="n">pull</span> <span class="n">vlachosgroup</span><span class="o">/</span><span class="n">ckbit</span><span class="p">:</span><span class="n">latest</span>
 </pre></div>
 </div>
 <p>2. Start a Python shell inside a container based off of that image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">--</span><span class="n">interactive</span> <span class="o">--</span><span class="n">tty</span> <span class="n">ckbit</span><span class="p">:</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">1</span> <span class="n">python3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">--</span><span class="n">interactive</span> <span class="o">--</span><span class="n">tty</span>
+    <span class="n">vlachosgroup</span><span class="o">/</span><span class="n">ckbit</span><span class="p">:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="n">python3</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p>Interface with the Python prompt to run CKBIT</p></li>
 </ol>
+<p>4. Optional - If you want to provide a way for running interactive Jupyter notebook examples inside the Docker container then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">ckbit</span><span class="p">:</span><span class="n">test</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;git clone https://github.com/VlachosGroup/ckbit.git &amp;&amp; cd ckbit &amp;&amp; git checkout development &amp;&amp; jupyter notebook --ip=&#39;*&#39; --port=8888 --no-browser --allow-root&quot;</span>
+</pre></div>
+</div>
+<p>Note: Once you move the code to the main branch then the command “git checkout development” is not required here.</p>
 </div>
 </div>
 

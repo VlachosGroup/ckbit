@@ -1,0 +1,16 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+	"numpy>=1.16",
+	"datetime",
+	"tabulate>=0.8",
+	"VUnits>=0.0.3",
+	"arviz>=0.4",
+	"pandas>=0.25",
+	"xlrd",
+	"openpyxl>=3.0.0",
+	"seaborn>=0.9.0",
+	"matplotlib>=3.1",
+]
+build-backend = "setuptools.build_meta"

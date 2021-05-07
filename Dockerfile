@@ -25,18 +25,10 @@ COPY ckbit /tmp/ckbit/ckbit
 WORKDIR /tmp/ckbit
 
 #
-# Build and install the CVODES-enabled PyStan:
+# Build and install the CVODES-enabled PyStan: and install CKBIT: and remove build folders
+# This reduces image size by reducing the last layers. 
 #
 RUN chmod +x pystan-install.sh
-RUN ./pystan-install.sh --build-root /tmp/ckbit --verbose
- 
-#
-# Install CKBIT:
-#
-RUN python setup.py install
-
-#
-# Remove the CKBIT source:
-#
+RUN ./pystan-install.sh --build-root /tmp/ckbit --verbose && python setup.py install && rm -rf /tmp/ckbit
 WORKDIR /
-RUN rm -rf /tmp/ckbit
+

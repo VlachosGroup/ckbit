@@ -328,7 +328,7 @@ def MCMC(filename, model_name='cstr', pH=False, warmup=None, iters=2000, \
     print(fit)
     sample_vals = fit.extract(permuted=True)
     if trace: 
-        traceplot = arviz.plot_trace(fit)
+        traceplot = arviz.plot_trace(fit, compact=False)
         for i in range(rxns):
             traceplot[i,0].set_title('A0{}'.format(i+1))
             traceplot[i,1].set_title('A0{}'.format(i+1))

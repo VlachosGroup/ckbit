@@ -2,7 +2,7 @@
 #
 # pystan-install.sh
 #
-# Download the latest PyStan source, switch to the CVODES branch, and build and install into
+# Download the archieved PyStan2 source repository, switch to the CVODES branch, and build and install into
 # the current Python environment.
 #
 
@@ -137,12 +137,12 @@ BUILD_DIR="${BUILD_ROOT}/pystan-src"
 CURRENT_DIR="$(pwd)"
 
 if [ $NO_CLONE -eq 0 ]; then
-    doCmd $VERBOSE -e "failed to clone PyStan github repository" -s "OK - cloned git repository" \
+    doCmd $VERBOSE -e "failed to clone PyStan2 github repository" -s "OK - cloned git repository" \
             git clone --recursive https://github.com/stan-dev/pystan2 "$BUILD_DIR"
 fi
 pushd "$BUILD_DIR" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "ERROR:  unable to change to PyStan source directory: $BUILD_DIR"
+    echo "ERROR:  unable to change to PyStan2 source directory: $BUILD_DIR"
     exit 1
 fi
 doCmd $VERBOSE -e "unable to checkout CVODES branch" -s "OK - checked-out cvodes branch" \
@@ -151,8 +151,8 @@ doCmd $VERBOSE -e "unable to update submodules in repository" -s "OK - updated s
         git submodule update --recursive
 doCmd $VERBOSE -e "failed while cleaning unneeded components from source repository" -s "OK - removed unneeded components from repository"  \
         python -c "\"import os, shutil; [shutil.rmtree(r'\\?\{}'.format(os.path.abspath(dirname)), ignore_errors=True) for dirname in [dirname for dirname, *_ in os.walk('pystan/stan') if any(dirname.endswith(ends) for ends in ['doc', 'test'])]]\""
-doCmd $VERBOSE -e "failed while building PyStan+CVODES module" -s "OK - PyStan+CVODES module built"  \
+doCmd $VERBOSE -e "failed while building PyStan2+CVODES module" -s "OK - PyStan2+CVODES module built"  \
         python setup.py build
-doCmd $VERBOSE -e "failed while installing PyStan+CVODES module" -s "OK - PyStan+CVODES module installed"  \
+doCmd $VERBOSE -e "failed while installing PyStan2+CVODES module" -s "OK - PyStan2+CVODES module installed"  \
         python setup.py install
 popd >/dev/null 2>&1

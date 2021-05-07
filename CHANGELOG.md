@@ -1,4 +1,4 @@
-### [0.0.3] - 2021-05-07
+## [1.0.0] - 2021-05-07
 - PyStan+CVODES no longer being developed; updated our PyStan installer to use the new (archived) GitHub URL
 - Updated Docker installation
 - Updated arviz syntax to align with current arviz package

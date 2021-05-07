@@ -41,7 +41,8 @@ https://www.anaconda.com/products/individual#download-section
 PyStan is the Python library that provides the Bayesian inference functionality
 for CKBIT, so it is crucial to install it properly. This becomes complicated
 since there are multiple versions of PyStan with different installation pathways
-depending on whether the computer is running Linux, Windows, or a Mac OS. To run 
+depending on whether the computer is running Linux, Windows, or a Mac OS. We are 
+using an achived version of PyStan2 to maintain CKBIT's functionality. To run 
 CKBIT, **a user must first install PyStan with the CVODES library. Without the
 CVODES version of PyStan, CKBIT will not install.** For Windows users, please 
 install Anaconda and see below for instructions. For all other users, please 
@@ -126,18 +127,32 @@ The container is publicly available on Docker Hub.
 
 A Docker container image can be accessed at this link:
 
-
+https://hub.docker.com/repository/docker/vlachosgroup/ckbit
 
 Once you have successfully downloaded the container:
 
 1. Load the image:
 ::
 	
-	docker image load --input ckbit-container-latest.tar
+	docker pull vlachosgroup/ckbit
+	
+Note: By default docker pulls the version with the tag = "latest", you can also explicitly pull down the correct version using
+::
+
+    docker pull vlachosgroup/ckbit:1.0.0
+    docker pull vlachosgroup/ckbit:latest
 
 2. Start a Python shell inside a container based off of that image:
 ::
 
-    docker run --rm --interactive --tty ckbit:0.0.1 python3
-
+    docker run --rm --interactive --tty 
+	vlachosgroup/ckbit:1.0.0 python3
+	
 3. Interface with the Python prompt to run CKBIT
+
+4. Optional - If you want to provide a way for running interactive Jupyter notebook examples inside the Docker container then: 
+::
+
+    docker run -i -t -p 8888:8888 ckbit:test /bin/bash -c "git clone https://github.com/VlachosGroup/ckbit.git && cd ckbit && git checkout development && jupyter notebook --ip='*' --port=8888 --no-browser --allow-root"
+	
+Note: Once you move the code to the main branch then the command "git checkout development" is not required here. 

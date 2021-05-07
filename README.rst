@@ -24,8 +24,8 @@ Max Cohen (maxrc@udel.edu)
 
 Dependencies
 ------------
-* PyStan: Interfaces with Stan for optimized Bayesian 
-  inference computation
+* PyStan2: Interfaces with Stan for optimized Bayesian 
+  inference computation - archieved repository
 * Datetime: Measures computational runtime
 * NumPy: Provides efficient array manipulation
 * Pickle: Creates and stores portable, serialized 

@@ -285,10 +285,9 @@ CKBIT. Run the command in the anaconda prompt of:</p>
 <li><p>Interface with the Python prompt to run CKBIT</p></li>
 </ol>
 <p>4. Optional - If you want to provide a way for running interactive Jupyter notebook examples inside the Docker container then:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">ckbit</span><span class="p">:</span><span class="n">test</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;git clone https://github.com/VlachosGroup/ckbit.git &amp;&amp; cd ckbit &amp;&amp; git checkout development &amp;&amp; jupyter notebook --ip=&#39;*&#39; --port=8888 --no-browser --allow-root&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="n">ckbit</span><span class="p">:</span><span class="n">test</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;git clone https://github.com/VlachosGroup/ckbit.git &amp;&amp; cd ckbit &amp;&amp; jupyter notebook --ip=&#39;*&#39; --port=8888 --no-browser --allow-root&quot;</span>
 </pre></div>
 </div>
-<p>Note: Once you move the code to the main branch then the command “git checkout development” is not required here.</p>
 </div>
 </div>
 

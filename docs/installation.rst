@@ -153,6 +153,4 @@ Note: By default docker pulls the version with the tag = "latest", you can also 
 4. Optional - If you want to provide a way for running interactive Jupyter notebook examples inside the Docker container then: 
 ::
 
-    docker run -i -t -p 8888:8888 ckbit:test /bin/bash -c "git clone https://github.com/VlachosGroup/ckbit.git && cd ckbit && git checkout development && jupyter notebook --ip='*' --port=8888 --no-browser --allow-root"
-	
-Note: Once you move the code to the main branch then the command "git checkout development" is not required here. 
+    docker run -i -t -p 8888:8888 ckbit:test /bin/bash -c "git clone https://github.com/VlachosGroup/ckbit.git && cd ckbit && jupyter notebook --ip='*' --port=8888 --no-browser --allow-root"

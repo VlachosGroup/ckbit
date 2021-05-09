@@ -97,8 +97,8 @@ setuptools_info = {
         "Topic :: Scientific/Engineering :: Chemistry",
         ],
     }
-if os.path.isfile('README.md'):
-    with open('README.md', 'r') as fh:
+if os.path.isfile('README.rst'):
+    with open('README.rst', 'r') as fh:
         setuptools_info['long_description'] = fh.read()
         if sys.version_info[0] >= 3:
             #
